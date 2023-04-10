@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block title %}
+Equity Alumni Connect|Events
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-md-2 d-none d-md-block bg-light sidebar-wrapper">
+        <div class="position-sticky sticky-top">
+        <nav class="bg-light sidebar">
+            <!-- Events sidebar -->
+            <div class="sidebar-sticky">
+            <form class="sidebar-search" action="" method="POST">
+                <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="Search...">
+                <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>Job categories</span>
+                <a class="d-flex align-items-center text-muted" href="#">
+                </a>
+            </h6>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        Engineering
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Medical
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Business Related
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('views.create_job_listing')}}">
+                        Create a Job Listing
+                    </a>
+                </li>
+            </ul>
+            </div>
+        </nav>
+        </div>
+    </div>
+
+    <main role="main" class="col-md-10 px-4">
+        <div class="container">
+        <h1 class="mt-3 mb-5">Browse all opportunities</h1>
+
+        <style>
+            .job-card {
+                background-color: rgba(130, 39, 27, 0.09);
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+                max-width: 800px;
+                min-height: 250px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-bottom: 20px
+            }
+            .job-card  a {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .profile-picture {
+                
+                
+            }
+            .profile-picture img {
+                width: 80px;
+                height: 80px;
+                border: 4px solid #A32A29;
+                border-radius: 50%;
+                object-fit:cover;
+                
+            }
+        </style>
+        {% for career in careers %}
+        <div class="row nowrap job-card " style="margin: 10px">
+            <div class="row mt-2">
+                <h3 class="col-6 sub-title">{{career.job_title}}</h3>
+                <h3 class="col-6 mb-3 sub-title" style="font-weight: 200;" >{{career.company}}</h3>
+            </div>
+            <div class="row mt-2 body-text">
+                <div class="col-3">
+                    <h5 >Location</h5>
+                    <span>{{career.location}}</span>
+                </div>
+                <div class="col-3">
+                    <h5 >Deadline</h5>
+                    <span>{{career.deadline_date}}</span>
+                </div>
+                <div class="col-3">
+                    <h5 >Salary</h5>
+                    <span>{{career.salary}}</span>
+                </div>
+                <div class="col-3">
+                    <h5 >Views</h5>
+                    <span>-</span>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-2 profile-picture">
+                    <img class="img-fluid " src="{{url_for('static', filename='images/event-1.jpg')}}"> 
+                </div>
+                <div class="col-5 pt-2">
+                    <h6>{{user.firstname}} {{user.lastname}}</h6>
+                    <span>Published: {{career.date_published}}</date>
+                </div>
+            </div>
+            <div class="row align-center">
+                <a href="#" class="text-center" style="text-decoration: none; font-weight: bold; color:#A32A29">View Details</a>
+            </div>
+        </div>
+        {% endfor %}
+        
+        
+        
+        </div>
+    </main>
+    </div>
+</div>
+  
+{% endblock %}

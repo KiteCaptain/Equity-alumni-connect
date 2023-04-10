@@ -1,28 +1,49 @@
 {% extends "base.html" %}
 {% block title %}
-SignUp|Captain Notes
+Alumni Connect|Signup
 {% endblock %}
 
 {% block content %}
-<h2>Welcome to Captain Notes</h2>
-<p>To add notes, signup first</p>
-<form class="form form-group" method="POST">
-    <hr />
-    <label for="firstname">First name</label>
-    <input class="form-control" id="firstname" name="firstname" type="text" placeholder="Enter firstname" required>
 
-    <label for="lastname">Last name</label>
-    <input class="form-control" id="lastname" name="lastname" type="text" placeholder="Enter last name" required>
+<style>
+    
+    .profile-form form-group{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    ::placeholder {
+        opacity: 0.7 !important;
+    }
+</style>
 
-    <label for="email">Email</label>
-    <input class="form-control" id="email" name="email" type="email" placeholder="Enter email" required>
-
-    <label for="password">Password</label>
-    <input class="form-control" id="password" name="password" type="password" placeholder="Enter password" required>
-
-    <label for="password2">Confirm password</label>
-    <input class="form-control" id="password2" name="password2" type="password" placeholder="Confirm password" required>  
-    <hr />
-    <input type="submit" value="Sign Up" class="btn btn-primary form-control"> 
-</form>
+<div class="container mt-5">
+    <h2 class="sub-title">Welcome to Equity Alumni/Scholars Connect</h2>
+    <p>Sign up to access all features</p>
+    <form class="form signup-form" method="POST">
+        <hr />
+        <div class="form-group">
+            <label for="firstname">First name</label>
+            <input class="form-control" id="firstname" name="firstname" type="text" placeholder="Enter firstname" required>
+        </div>
+        
+        <div>
+            <label for="lastname">Last name</label>
+            <input class="form-control" id="lastname" name="lastname" type="text" placeholder="Enter last name" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input class="form-control" id="email" name="email" type="email" placeholder="Enter email" required>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input class="form-control" id="password" name="password" type="password" placeholder="Enter password" required>
+        </div>
+        <div>
+            <label for="password2">Confirm password</label>
+            <input class="form-control" id="password2" name="password2" type="password" placeholder="Confirm password" required>  
+        </div>
+        <hr/>
+        <input type="submit" value="Sign Up" class="btn btn-primary form-control"> 
+    </form>
+</div>           
 {% endblock %}

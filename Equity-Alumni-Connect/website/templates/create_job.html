@@ -1,0 +1,44 @@
+<!-- careers.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h1>Create Job Listing</h1>
+  <form method="POST">
+    <div class="form-group">
+      <label for="job_title">Job Title:</label>
+      <input type="text" class="form-control" id="job_title" name="job_title">
+    </div>
+    <div class="form-group">
+      <label for="company">Company:</label>
+      <input type="text" class="form-control" id="company" name="company">
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input type="text" class="form-control" id="location" name="location">
+    </div>
+    <div class="form-group">
+      <label for="salary">Salary:</label>
+      <input type="text" class="form-control" id="salary" name="salary">
+    </div>
+    <div class="form-group">
+      <label for="job_description">Job Description:</label>
+      <textarea class="form-control" id="job_description" name="job_description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="deadline_date" class="form-label">Deadline Date</label>
+      <input type="datetime-local" id="deadline_date" name="deadline_date" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Phone Number:</label>
+      <input type="text" class="form-control" id="phone_number" name="phone_number">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email">
+    </div>
+    <button type="submit" class="btn btn-primary">Create Job Listing</button>
+  </form>
+</div>
+{% endblock %}

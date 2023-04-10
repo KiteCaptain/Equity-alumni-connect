@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+{% block title %}
+Alumni Connect|Signup
+{% endblock %}
+
+{% block content %}
+<style>
+    .profile-form {
+        background-color: rgb(137, 39, 27, 0.09);
+        padding:20px;
+        border-radius: 10px;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.5) ;
+        color: #231F20;
+        max-width: 600px;
+    }
+    .profile-form form-group{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    ::placeholder {
+        opacity: 0.7 !important;
+    }
+</style>
+<h2 class="container mt-5 mb-4 text-center sub-title">Sign Up to Equity Alumni/Scholars Connect Platform</h2>
+
+<form class="container profile-form body-text" action="{{url_for('auth.create_profile')}}" method="POST"  >
+    <div class="container py-4">        
+        <!-- ========= Personal Details ======= -->
+            <h5>Personal Details</h2>
+        <div class="form-group">
+            <label for="scholarsCode" >Scholars Code*</label>
+            <p style="font-size: 0.6rem">If forgotten contact equity bank.</p>
+            <input name="scholarsCode" type="text" class="form-control" id="scholarsCode" placeholder="eg xxxx-2020-033-0243" required>
+        </div>
+        <div class="form-group">
+            <label for="primaryNumber" >Primary Phone Number*</label>
+            <p style="font-size: 0.6rem"></p>
+            <input name="primaryNumber" type="tel" class="form-control" id="primaryNumber" placeholder="eg +254712345678" required>
+        </div>
+        <div class="form-group">
+            <label for="secondaryNumber" >Secondary Phone Number</label>
+            <p style="font-size: 0.6rem">This can be used to contact you incase your you are not reachable by the primary phone number</p>
+            <input name="secondaryNumber" type="tel" class="form-control" id="secondaryNumber" placeholder="(Optional)" >
+        </div>
+        <!-- ========= Location Details ======= -->
+            <h5 class="mt-4">Location Details</h5>
+        <div class="form-group">
+            <label for="country">Country*</label>
+            <select name="country" class="form-control" id="country" required>
+                <option value="" disabled selected>--Select Country--</option>
+                <option value="Ethiopia">Ethiopia</option>
+                <option value="Kenya">Kenya</option>
+                <option value="Rwanda">Rwanda</option>
+                <option value="Tanzania">Tanzania</option>
+                <option value="Uganda">Uganda</option>
+                <option value="Democratic Republic Of Congo">Democratic Republic Of Congo</option>
+                <option value="South Sudan">South Sudan</option>
+            </select>
+        </div>
+              
+        <div class="form-group">
+            <label for="homeCounty">Home County*</label>
+            <select name="homeCounty" class="form-control" id="homeCounty" required>
+                <option value="" disabled selected>Select your home county</option>
+                <option value="Baringo">Baringo</option>
+                <option value="Bomet">Bomet</option>
+                <option value="Bungoma">Bungoma</option>
+                <option value="Busia">Busia</option>
+                <option value="Elgeyo-Marakwet">Elgeyo-Marakwet</option>
+                <option value="Embu">Embu</option>
+                <option value="Garissa">Garissa</option>
+                <option value="Homa Bay">Homa Bay</option>
+                <option value="Isiolo">Isiolo</option>
+                <option value="Kajiado">Kajiado</option>
+                <option value="Kakamega">Kakamega</option>
+                <option value="Kericho">Kericho</option>
+                <option value="Kiambu">Kiambu</option>
+                <option value="Kilifi">Kilifi</option>
+                <option value="Kirinyaga">Kirinyaga</option>
+                <option value="Kisii">Kisii</option>
+                <option value="Kisumu">Kisumu</option>
+                <option value="Kitui">Kitui</option>
+                <option value="Kwale">Kwale</option>
+                <option value="Laikipia">Laikipia</option>
+                <option value="Lamu">Lamu</option>
+                <option value="Machakos">Machakos</option>
+                <option value="Makueni">Makueni</option>
+                <option value="Mandera">Mandera</option>
+                <option value="Marsabit">Marsabit</option>
+                <option value="Meru">Meru</option>
+                <option value="Migori">Migori</option>
+                <option value="Mombasa">Mombasa</option>
+                <option value="Murang'a">Murang'a</option>
+                <option value="Nairobi City">Nairobi City</option>
+                <option value="Nakuru">Nakuru</option>
+                <option value="Nandi">Nandi</option>
+                <option value="Narok">Narok</option>
+                <option value="Nyamira">Nyamira</option>
+                <option value="Nyandarua">Nyandarua</option>
+                <option value="Nyeri">Nyeri</option>
+                <option value="Samburu">Samburu</option>
+                <option value="Siaya">Siaya</option>
+                <option value="Taita-Taveta">Taita-Taveta</option>
+                <option value="Tana River">Tana River</option>
+                <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+                <option value="Trans Nzoia">Trans Nzoia</option>
+                <option value="Turkana">Turkana</option>
+                <option value="Uasin Gishu">Uasin Gishu</option>
+                <option value="Vihiga">Vihiga</option>
+                <option value="Wajir">Wajir</option>
+                <option value="West Pokot">West Pokot</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="currentCounty">Current County</label>
+            <select name="currentCounty" class="form-control" id="currentCounty" required>
+                <option value="" disabled selected>(optional)</option>
+                <option value="Baringo">Baringo</option>
+                <option value="Bomet">Bomet</option>
+                <option value="Bungoma">Bungoma</option>
+                <option value="Busia">Busia</option>
+                <option value="Elgeyo-Marakwet">Elgeyo-Marakwet</option>
+                <option value="Embu">Embu</option>
+                <option value="Garissa">Garissa</option>
+                <option value="Homa Bay">Homa Bay</option>
+                <option value="Isiolo">Isiolo</option>
+                <option value="Kajiado">Kajiado</option>
+                <option value="Kakamega">Kakamega</option>
+                <option value="Kericho">Kericho</option>
+                <option value="Kiambu">Kiambu</option>
+                <option value="Kilifi">Kilifi</option>
+                <option value="Kirinyaga">Kirinyaga</option>
+                <option value="Kisii">Kisii</option>
+                <option value="Kisumu">Kisumu</option>
+                <option value="Kitui">Kitui</option>
+                <option value="Kwale">Kwale</option>
+                <option value="Laikipia">Laikipia</option>
+                <option value="Lamu">Lamu</option>
+                <option value="Machakos">Machakos</option>
+                <option value="Makueni">Makueni</option>
+                <option value="Mandera">Mandera</option>
+                <option value="Marsabit">Marsabit</option>
+                <option value="Meru">Meru</option>
+                <option value="Migori">Migori</option>
+                <option value="Mombasa">Mombasa</option>
+                <option value="Murang'a">Murang'a</option>
+                <option value="Nairobi City">Nairobi City</option>
+                <option value="Nakuru">Nakuru</option>
+                <option value="Nandi">Nandi</option>
+                <option value="Narok">Narok</option>
+                <option value="Nyamira">Nyamira</option>
+                <option value="Nyandarua">Nyandarua</option>
+                <option value="Nyeri">Nyeri</option>
+                <option value="Samburu">Samburu</option>
+                <option value="Siaya">Siaya</option>
+                <option value="Taita-Taveta">Taita-Taveta</option>
+                <option value="Tana River">Tana River</option>
+                <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+                <option value="Trans Nzoia">Trans Nzoia</option>
+                <option value="Turkana">Turkana</option>
+                <option value="Uasin Gishu">Uasin Gishu</option>
+                <option value="Vihiga">Vihiga</option>
+                <option value="Wajir">Wajir</option>
+                <option value="West Pokot">West Pokot</option>
+            </select>
+        </div>
+      
+        <div class="form-group">
+            <label for="Equity-home-branch">Equity Bank Home Branch County</label>
+            <select name="Equity-home-branch" class="form-control" id="Equity-home-branch" required>
+                <option value="" disabled selected>--Select a Home Branch--</option>
+                <option value="Head Office, Equity Centre Branch, NAIROBI">Head Office, Equity Centre Branch, NAIROBI</option>
+                <option value="CORPORATE Branch, NAIROBI">CORPORATE Branch, NAIROBI</option>
+                <option value="FOURWAYS Branch, NAIROBI">FOURWAYS Branch, NAIROBI</option>
+                <option value="KANGEMA Branch, KANGEMA">KANGEMA Branch, KANGEMA</option>
+                <option value="KARATINA Branch, KARATINA">KARATINA Branch, KARATINA</option>
+                <option value="KIRIAINI Branch, KIRIANI">KIRIAINI Branch, KIRIANI</option>
+                <option value="MURARANDIA Branch, MURARANDIA">MURARANDIA Branch, MURARANDIA</option>
+                <option value="KANGARI Branch, KANGARI">KANGARI Branch, KANGARI</option>
+                <option value="OTHAYA Branch, OTHAYA">OTHAYA Branch, OTHAYA</option>
+                <option value="THIKA Branch, THIKA">THIKA Branch, THIKA</option>
+                <option value="KERUGOYA Branch, KERUGOYA">KERUGOYA Branch, KERUGOYA</option>
+                <option value="NYERI Branch, NYERI">NYERI Branch, NYERI</option>
+                <option value="TOM MBOYA Branch, NAIROBI">TOM MBOYA Branch, NAIROBI</option>
+                <option value="NAKURU Branch, NAKURU">NAKURU Branch, NAKURU</option>
+                <option value="MERU Branch, MERU">MERU Branch, MERU</option>
+                <option value="MAMA NGINA Branch, NAIROBI">MAMA NGINA Branch, NAIROBI</option>
+                <option value="NYAHURURU Branch, NYAHURURU">NYAHURURU Branch, NYAHURURU</option>
+                <option value="COMMUNITY Branch, NAIROBI">COMMUNITY Branch, NAIROBI</option>
+                <option value="EMBU Branch, EMBU">EMBU Branch, EMBU</option>
+                <option value="NAIVASHA Branch, NAIVASHA">NAIVASHA Branch, NAIVASHA</option>
+                <option value="CHUKA Branch, CHUKA">CHUKA Branch, CHUKA</option>
+                <option value="MURANGA Branch, MURANGA">MURANGA Branch, MURANGA</option>
+                <option value="MOLO Branch, MOLO">MOLO Branch, MOLO</option>
+                <option value="HARAMBEE A Branch, NAIROBI">HARAMBEE A Branch, NAIROBI</option>
+                <option value="MOMBASA Branch, MOMBASA">MOMBASA Branch, MOMBASA</option>
+                <option value="KIMATHI ST Branch, NAIROBI">KIMATHI ST Branch, NAIROBI</option>
+                <option value="NANYUKI Branch, NANYUKI">NANYUKI Branch, NANYUKI</option>
+            </select>    
+        </div>
+        <!--==========Academic level Details===========-->
+            <h5 class="mt-4">Academic Level Details</h5>
+        <div class="form-group">
+            <label for="schoolUniversity" >High School/University/College*</label>
+            <p style="font-size: 0.6rem">This is the school you studied in  or are currently studying in.</p>
+            <input name="schoolUniversity" type="text" class="form-control" id="schoolUniversity" placeholder="eg. Brilliant Comrades Technical College" required>
+        </div>
+        <div class="form-group">
+            <label for="course" >Program/Course</label>
+            <p style="font-size: 0.6rem">This is the course/career path are pursuing now or you pursued in school. If still in highschool this will help you match up with alumni pursuing your dream courses</p>
+            <input name="course" type="text" class="form-control" id="course" placeholder="Diploma in Nutrition and Dietetics">
+        </div>
+
+        <div class="form-group">
+            <label for="interests">Interests*</label>
+            <input name="interests" type="text" class="form-control" id="interests" placeholder="Enter your interests" required>
+        </div>
+        <div class="form-group">
+            <label for="Hobbies">Hobbies</label>
+            <input name="hobbies" type="text" class="form-control" id="hobbies" placeholder="eg Hiking" >
+        </div> 
+    </div>
+    <button type="submit" class="btn btn-primary align-center mt-5 ">Submit</button>
+</form>
+<div class="container mt-3">
+    <span>Information provided here is used to provide you with better services and recommendations. see <a href="https://equitygroupholdings.com/ke/images/PRIVACY_NOTICE_KE_1.pdf">privacy policy</a> and <a href="https://equitygroupholdings.com/ke/terms-and-conditions">terms and conditions</a></span>
+</div>
+  
+{% endblock %}

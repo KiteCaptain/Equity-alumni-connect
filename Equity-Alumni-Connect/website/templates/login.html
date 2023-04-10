@@ -1,20 +1,24 @@
 {% extends "base.html" %}
 {% block title %}
-Captain Notes
+Login|Equity Alumni Connect
 {% endblock %}
 
 {% block content %}
-<form class="form" method="POST">
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" class="form-control" name="email" type="email" placeholder="Enter email" required>
-    </div>
-    
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" class="form-control" name="password" type="password" placeholder="Enter password" required>
-    </div>
-    
-    <input type="submit" class="btn btn-primary ">
-</form>
+<div class="container align-center m-5 signup-form">
+    <form class="form" method="POST">
+        <h2>Log In to continue to Equity Alumni Connect</h2>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" class="form-control" name="email" type="email" placeholder="Enter email" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" class="form-control" name="password" type="password" placeholder="Enter password" required>
+        </div>
+        
+        <input type="submit" class="btn btn-primary ">
+        <p class="mt-5">Don't have an account? <a href="{{url_for('auth.signup')}}">Sign Up here</a></p>
+    </form>
+</div>
 {% endblock %}

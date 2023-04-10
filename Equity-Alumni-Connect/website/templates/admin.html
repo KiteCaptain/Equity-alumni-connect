@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                <span data-feather="home"></span>
+                Dashboard <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file"></span>
+                Groups
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="shopping-cart"></span>
+                events
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Interaction reports</span>
+            <a class="d-flex align-items-center text-muted" href="#">
+              <span data-feather="plus-circle"></span>
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Current month
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Past year
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="container">
+      <h1 class="mt-3 mb-5">Welcome to the Admin Dashboard</h1>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Database Statistics</h2>
+          <p>Number of people in the database: 10,000</p>
+          <p>Number of people who registered within the past year: 1,000</p>
+        </div>
+        
+        <div class="col-md-6">
+          <h2>Communication and Posting Activity</h2>
+          <p>Number of total communications: 50,000</p>
+          <p>Number of total posts: 25,000</p>
+        </div>
+      </div>
+      
+      <div class="mt-5">
+        <h2>Other Features</h2>
+        <ul>
+          <li>Search functionality to find people by name, email, or other criteria</li>
+          <li>Filtering options to narrow down results based on various parameters</li>
+          <li>Export functionality to download data in various formats (e.g. CSV, JSON)</li>
+          <li>Analytics dashboard to visualize trends and patterns in the data</li>
+          <li>Admin user management tools to create, edit, and delete accounts</li>
+        </ul>
+      </div>
+    </div>
+</main>
+    </div>
+  </div>
+
+{% endblock %}
