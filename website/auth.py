@@ -6,19 +6,20 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
-
+# Admin route
 @auth.route('/admin')
 def admin():
     total_users = User.query.all()
     return render_template("admin.html", user=current_user)
 
-
+# Login route
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
-        password = request.form.get('password')   
-        
+        password = request.form.get('password')  
+         
+        # Check if user exists in the database
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
@@ -31,12 +32,14 @@ def login():
             flash('Account does not exist. Create a new account', category='error')
     return render_template("login.html", user=current_user)
 
+# Logout route
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
+# Signup route
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -48,10 +51,11 @@ def signup():
         
         user = User.query.filter_by(email=email).first()
         print(user)
-        
+        # Check if email already exists in the database
         if user:
-            flash('Email already exists', category='error')     
-        
+            flash('Email already exists', category='error')    
+              
+        # Validate form inputs
         elif len(email) < 4:
             flash('Invalid email!', category='error') 
         elif len(firstname) < 2:
@@ -60,6 +64,8 @@ def signup():
             flash('Name must be more than 2 characters!', category='error') 
         elif password != password2:
             flash('Passwords do not match!', category='error') 
+            
+        # Create new user and add to database
         else: 
             new_user = User(
                 email=email, 
@@ -76,6 +82,7 @@ def signup():
     
     return render_template("signup.html", user=current_user)
 
+# Create profile route
 @auth.route('/create-profile', methods=['GET', 'POST'])
 @login_required
 def create_profile():  
@@ -91,7 +98,7 @@ def create_profile():
         course = request.form.get('course')
         interests = request.form.get('interests')
         hobbies = request.form.get('hobbies') 
-        
+        # 
         new_profile = AlumniScholarProfiles (
             user_id = current_user.id,
             scholars_code=scholars_code,
@@ -106,6 +113,7 @@ def create_profile():
             interests=interests,
             hobbies=hobbies      
         )
+        # Adding new profile to the database
         db.session.add(new_profile)
         db.session.commit()    
         flash('Profile created successfully!',category='success') 
