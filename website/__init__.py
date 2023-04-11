@@ -10,9 +10,9 @@ import os
 
 
 # load environment variables
-password=os.getenv("PASSWORD")
-admin_name = os.getenv("ADMIN_NAME")
-uri = f'postgresql+psycopg2://{admin_name}:{password}@elp-server.postgres.database.azure.com/postgres?sslmode=require'
+#password=os.getenv("PASSWORD")
+#admin_name = os.getenv("ADMIN_NAME")
+uri = f'postgresql+psycopg2://milton:test%401234@elp-server.postgres.database.azure.com/postgres?sslmode=require'
 db = SQLAlchemy()
 
 # Function to create Flask app instance
