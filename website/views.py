@@ -90,15 +90,3 @@ def find_alumni():
 def profile_detail(scholar_id):
     scholar = User.query.filter_by(id=scholar_id).first()
     return render_template('profile_details.html',user=current_user, scholar=scholar)
-
-@views.route('/delete-post', methods=["POST"])
-def delete_note():
-    note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
-    if note: 
-        if note.user_id == current_user.id:
-            db.session.delete(note)
-            db.session.commit()
-   
-    return jsonify({})
