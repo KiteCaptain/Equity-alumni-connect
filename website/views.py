@@ -26,9 +26,6 @@ def home():
 def about():
     return render_template("about.html", user=current_user)
 
-@views.route('/admin')
-def admin():
-    return render_template("admin.html", user=current_user)
 
 
 @views.route('/events', methods=['GET', 'POST'])
@@ -86,10 +83,9 @@ def create_job_listing():
 
 @views.route('/find-alumni', methods=['GET', 'POST'])
 def find_alumni():
-    users = User.query.order_by(User.firstname.asc()).all()
-    all_profiles = AlumniScholarProfiles.query.all()
+    scholars = User.query.order_by(User.firstname.asc()).all()
     # scholar_profiles = [scholar.profile for scholar in scholars]
-    return render_template("find_alumni.html", user=current_user,users=users, all_profiles=all_profiles)
+    return render_template("find_alumni.html", user=current_user, scholars=scholars)
 
 
 @views.route('/delete-note', methods=["POST"])

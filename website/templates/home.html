@@ -27,15 +27,15 @@ Equity Alumni Connect|home
             </div>
             {% else %}
             <div class="d-flex flex-row landing-buttons">
-                <div class="signup">
+                <div class="signup mr-2">
                     <p>Don't have an account?</p>
-                    <a href="#">
+                    <a href="{{url_for('auth.signup')}}">
                     <button class="btn btn-primary">SignUp</button>
                     </a>
                 </div>
-                <div class="login">
+                <div class="login ml-2">
                     <p>Already have an account?</p>
-                    <a href="#">
+                    <a href="{{url_for('auth.login')}}">
                     <button class="btn btn-primary">Login</button>
                     </a>
                 </div>
@@ -52,19 +52,31 @@ Equity Alumni Connect|home
     <style>
         .get-engaged-card {
             box-shadow: 0 0 10px black; 
-            border-radius
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .get-engaged-card p {
+            font-size: 1.2rem
         }
     </style>
 
-<section class="container align-items-center">
+<section class="container align-center">
     <h1 class="mt-5 mb-5 text-center sub-title">Get Engaged</h1>
 
-    <div class="row d-flex flex-row flex-wrap mx-auto get-engaged-card">
+    <div class="row d-flex flex-row flex-wrap get-engaged-card">
         <div class="col-lg-6 col-sm-12 order-lg-1 order-sm-1">
             <h2 class="text-left sub-title">Become Year Group Leader</h2>
             <p class="body-text">Help us to reach out to fellow Alumni by becoming Year Group Ambassador</p>
         </div>
-        <div class="col-lg-6 col-sm-12 order-lg-2 order-sm-1">
+        <div class="col-lg-6 col-sm-12 order-lg-2 order-sm-2">
             <img class="img-fluid homepage-png" src="{{url_for('static', filename='images/leader_cropped.png')}}" alt="leader illustration">
         </div>
     </div>
@@ -81,25 +93,27 @@ Equity Alumni Connect|home
       
     <div class="row d-flex flex-row flex-wrap get-engaged-card">
         <div class="col-lg-6">
+            <img class="img-fluid homepage-png" src="{{url_for('static', filename='images/testimonial_1.png')}}" alt="feedback illustration">
+        </div>
+        <div class="col-lg-6 col-sm-12 order-lg-1 order-sm-1">
             <h2  class="sub-title">Write Testimonial</h2>
             <p>Share your experience as a Equity Leadership Partner or Wings to Fly beneficiary. Make it known to the world.</p>
         </div>
-        <div class="col-lg-6">
-            <img class="img-fluid homepage-png" src="{{url_for('static', filename='images/testimonial_1.png')}}" alt="feedback illustration">
-        </div>
+        
     </div>
       
     <div class=" row d-flex flex-row flex-wrap flex-row-reverse get-engaged-card">
         <div class="col-lg-6">
+            <img class="img-fluid homepage-png" src="{{url_for('static', filename='images/career_growth.png')}}" alt="career growth illustration">
+        </div>
+        <div class="col-lg-6">
             <h2  class="sub-title">Share Career Opportunities</h2>
             <p>Is your organization hiring new Talent? Share the career opportunity with the huge talent pool among the Alumni and Scholars.</p>
         </div>
-        <div class="col-lg-6">
-            <img class="img-fluid homepage-png" src="{{url_for('static', filename='images/career_growth.png')}}" alt="career growth illustration">
-        </div>
+        
     </div>
       
-    <div class="row d-flex flex-row flex-wrap get-engaged-card">
+    <div class="row d-flex flex-row flex-wrap mb-5 get-engaged-card">
         <div class="col-lg-6">
             <h2 class="sub-title">Share Your Story</h2>
             <p>Is it your first job? Your Entrepreneurial Journey?The other Alumni would love to hear from you. Tell it and inspire the next disruptor among the Scholars and Alumni</p>
@@ -114,7 +128,7 @@ Equity Alumni Connect|home
 </section>
 
 <!-- ==========Testimonial section -->
-<section id="testimonial" >
+<section id="testimonial" cklass="mt-4">
 <div class='container'>
     <h1  class="sub-title">Testimonies from our Beneficiaries</h1>
     <div class="testimonial-container d-flex flex-row">

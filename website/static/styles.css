@@ -141,7 +141,8 @@ p {
 
 }
 .homepage-png {
-    width: 100%;
+    width: 80%;
+    height: auto;
 }
 
 

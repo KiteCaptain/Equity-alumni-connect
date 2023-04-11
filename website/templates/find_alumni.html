@@ -13,11 +13,8 @@ Equity Alumni Connect|Find Alumni
             <div class="sidebar-sticky">
             <form class="sidebar-search" action="" method="POST">
                 <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
                 <input type="text" class="form-control" placeholder="Search...">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></span></button>
                 </div>
             </form>
 
@@ -29,7 +26,7 @@ Equity Alumni Connect|Find Alumni
             <ul class="nav flex-column">
                 <li class="nav-item">
                 <a class="nav-link active" href="#">
-                    Institution <span class="sr-only">(upcoming events)</span>
+                    Institution
                 </a>
                 </li>
                 <li class="nav-item">
@@ -47,143 +44,52 @@ Equity Alumni Connect|Find Alumni
         </nav>
         </div>
     </div>
+    <style>
+      .profile-card {
+          background-color: rgba(130, 39, 27, 0.09);
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+          max-width: 900px;
+          min-height: 250px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          margin-bottom: 20px
+      }
+      .profile-card  a {
+          margin-left: auto;
+          margin-right: auto;
+          padding: 30px;
+      }
+      .profile-card img {
+          width:150px;
+          height: 150px;
+          border-radius: 50%;
+          background-color: #fff;
+      }
+  </style>
 
     <main role="main" class="col-md-10 px-4">
         <div class="container">
-        <h1 class="mt-3 mb-5">See all Alumni/scholars available</h1>
-
-        <style>
-            .profile-card {
-                background-color: rgba(130, 39, 27, 0.09);
-                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-                max-width: 900px;
-                height: 250px;
-                padding-top: 10px;
-                padding-bottom: 10px;
-                margin-bottom: 20px
-            }
-            .profile-card  a {
-                margin-left: auto;
-                margin-right: auto;
-                padding: 30px;
-            }
-            .profile-card img {
-                width:150px;
-                height: 150px;
-                border-radius: 50%;
-                background-color: #fff;
-            }
-        </style>
-        
-        <!-- {% for scholar, scholar_profile in zip(scholars, scholar_profiles) %}
-        <div class="row nowrap profile-card">
-            <div class="col-md-6 col-sm-4" style="width: 50%">
-                <img src="{{url_for('static', filename='images/male-avatar2.png')}}" alt="">
+    {%if scholars %}
+    {% for scholar in scholars %}
+        <div class="row d-flex flex-row flex-wrap profile-card" style="">
+            <div class="col-lg-6 col-md-6 col-sm-4" >
+                <img class="img-fluid" src="{{url_for('static', filename='images/male-avatar2.png')}}" alt="event one image" style="width: 200px; height: 200px; object-fit:cover;">
             </div>
-
-            <div class="col-md-6 col-sm-8 align-center" style="width:50%;">
-                <h2>{{scholar.firstname}} {{scholar.lastname}}</h2>
-                <p>{{scholar_profile.course}}</p>
-                <p>{{scholar_profile.school_university_college}}</p>
-                <p>{{scholar_profile.current_county}}</p>
-                <a href="#" class="text-center" style="text-decoration: none; font-weight: bold; color:#A32A29">View Profile</a>
+        {% for scholar_profile in scholar.user_profile%}
+            <div class="col-lg-6 col-md-6 col-sm-8 align-center" style="width:50%;">
+              <h2>{{scholar.firstname}} {{scholar.lastname}}</h2>
+                <p>School: {{ scholar_profile.school_university_college }}</p>
+                <p>Course/Specialization: {{scholar_profile.course}}</p>
+                <p>Interests:  {{scholar_profile.interests}}</p>
+                <p>Hobbies:  {{scholar_profile.hobbies}}</p>
+                <a href="#" class="text-center" style="text-decoration: none; font-weight: bold; color:#A32A29; font-size: 1.2rem">View Full Profile</a>
             </div>
+          {%endfor%}
         </div>
-        {% endfor %} -->
-
-        <!--  -->
+    {% endfor %}
+  {% endif %}  
        
         
-       
-
-
-        <ul>
-            {% for u in users %}
-            {{ user.email }} - {{ user.firstname }}
-                {% for x in u.user_profile%}
-                <li>
-                    
-                    <ul>
-                    <li>Scholars Code: {{ x.scholars_code }}</li>
-                    <li>Primary Number: {{ x.primary_number }}</li>
-                    <li>Secondary Number: {{ x.secondary_number }}</li>
-                    <li>Country: {{ x.country }}</li>
-                    <li>Home County: {{ x.home_county }}</li>
-                    <li>Current County: {{ x.current_county }}</li>
-                    <li>Equity Home Branch: {{ x.equity_home_branch }}</li>
-                    <li>School/University/College: {{ x.school_university_college }}</li>
-                    <li>Course: {{ x.course }}</li>
-                    <li>Interests: {{ x.interests }}</li>
-                    <li>Hobbies: {{ x.hobbies }}</li>
-                    </ul>
-                </li>
-                {% endfor %}
-            {% endfor %}
-          </ul>
-
-
-
-
-  <h1>All Users</h1>
-  <ul>
-    {% for u in users %}
-      <li>
-        {{ user.email }} - {{ user.firstname }}
-        <ul>
-          <li>Scholars Code: {{ u.user_profile.scholars_code }}</li>
-          <li>Primary Number: {{ u.user_profile.primary_number }}</li>
-          <li>Secondary Number: {{ u.user_profile.secondary_number }}</li>
-          <li>Country: {{ u.user_profile.country }}</li>
-          <li>Home County: {{ u.user_profile.home_county }}</li>
-          <li>Current County: {{ u.user_profile.current_county }}</li>
-          <li>Equity Home Branch: {{ u.user_profile.equity_home_branch }}</li>
-          <li>School/University/College: {{ u.user_profile.school_university_college }}</li>
-          <li>Course: {{ u.user_profile.course }}</li>
-          <li>Interests: {{ u.user_profile.interests }}</li>
-          <li>Hobbies: {{ u.user_profile.hobbies }}</li>
-        </ul>
-      </li>
-    {% endfor %}
-  </ul>
-
-
-
-  <h1>All Users</h1>
-  <ul>
-    {% for user in users %}
-      <li>{{ user.firstname }} {{ user.lastname }}</li>
-      <ul>
-        <li>Email: {{ user.email }}</li>
-        <li>Notes: 
-          <ul>
-            {% for note in user.notes %}
-              <li>{{ note.data }}</li>
-            {% endfor %}
-          </ul>
-        </li>
-        <li>Profile: {{ user.user_profile.equity_home_branch }}</li>
-        <li>Events Created: 
-          <ul>
-            {% for event in user.event_created %}
-              <li>{{ event.event_name }}</li>
-            {% endfor %}
-          </ul>
-        </li>
-        <li>Jobs Created: 
-          <ul>
-            {% for job in user.job_created %}
-              <li>{{ job.job_title }}</li>
-            {% endfor %}
-          </ul>
-        </li>
-      </ul>
-    {% endfor %}
-  </ul>
-
-
-
-
-
         </div>
     
     </div>
