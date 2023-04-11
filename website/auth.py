@@ -6,12 +6,6 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
-# Admin route
-@auth.route('/admin')
-def admin():
-    total_users = User.query.all()
-    return render_template("admin.html", user=current_user)
-
 # Login route
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -121,3 +115,61 @@ def create_profile():
                
     return render_template('create_profile.html', user=current_user)
 
+# List all users
+@auth.route('/admin')
+@login_required
+def admin():
+    users = User.query.order_by(User.id.asc()).all()
+    return render_template('admin.html',user=current_user, users=users)
+
+# Edit a user
+@auth.route('/admin/user/edit/<int:user_id>', methods=['GET', 'POST'])
+def edit_user(user_id):
+    user = User.query.get_or_404(user_id)
+
+    if request.method == 'POST':
+        user.email = request.form['email']
+        user.firstname = request.form['firstname']
+        user.lastname = request.form['lastname']
+        db.session.commit()
+        flash('User updated successfully.', 'success')
+        return redirect(url_for('auth.admin'))
+
+    return render_template('edit_user.html', user=user)
+
+# Delete a user
+@auth.route('/admin/user/delete/<int:user_id>', methods=['POST'])
+@login_required
+def delete_user(user_id):
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('User deleted successfully.', 'success')
+    return redirect(url_for('auth.admin'))
+
+# Edit event
+@auth.route('/admin/event/<int:event_id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_event(event_id):
+    event = Events.query.get_or_404(event_id)
+    if request.method == 'POST':
+        event.event_name = request.form['event_name']
+        event.event_venue = request.form['event_venue']
+        event.event_date = request.form['event_date']
+        event.event_description = request.form['event_description']
+        event.phone_number = request.form['phone_number']
+        event.email = request.form['email']
+        db.session.commit()
+        flash('Event has been updated successfully!', 'success')
+        return redirect(url_for('events'))
+    return render_template('update_event.html', event=event)
+
+# Delete event
+@auth.route('admin/event/<int:event_id>/delete', methods=['POST'])
+@login_required
+def delete_event(event_id):
+    event = Events.query.get_or_404(event_id)
+    db.session.delete(event)
+    db.session.commit()
+    flash('Event has been deleted successfully!', 'success')
+    return redirect(url_for('events'))

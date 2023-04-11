@@ -28,6 +28,7 @@
     defer
     src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" integrity="sha512-24XP4a9KVoIinPFUbcnjIjAjtS59PUoxQj3GNVpWc86bCqPuy3YxAcxJrxFCxXe4GHtAumCbO2Ze2bddtuxaRw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js">feather.replace()</script>
+    <script defer src="{{url_for('static', filename='script.js')}}"></script>
 
 
   <link rel="shortcut icon"  href="{{ url_for('static', filename='images/equity-bank-logo.png') }}"/>
@@ -100,14 +101,26 @@
 
 
 <footer>
-    <div id="footer">
-        <hr/>
-        <div class="container flex-column">        
+    <style>
+        .quick-links a{
+            text-decoration: none; 
+            color: #dedede;
+        }
+
+    </style>
+    <div class="container row quick-links">
+        <div class="col-lg-6 col-sm-8">        
             <p>Contacts</p>
-            <p>info@equitygroupholdings.com<p>
+            <p><a href="https://equitygroupfoundation.com/">EquityLeadershipProgram@equitygroupfoundation.com</a><p>
             <p>Tel: +254 763 000 000</p>
         </div>
-        <p class="text-center align-self-end pt-5">Copyright 2023 @equitygroupholdings.com</p>
+        <div class="d-flex flex-row col-lg-6 col-sm-8">
+            <a href="https://equitygroupholdings.com/ke/images/PRIVACY_NOTICE_KE_1.pdf">privacy policy</a>
+            <a href="https://equitygroupholdings.com/ke/terms-and-conditions">terms and conditions</a>
+        </div>
+        <p class="text-center align-self-end pt-5"  id="copyright">
+           <span id="copyright"> &copy; 2023</span> <a href="https://equitygroupfoundation.com/">www.equitygroupfoundation.com </a>
+        </p>
     </div>
 </footer>
   

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, request, flash, jsonify, redirect
 from flask_login import login_required,  current_user
 from flask_wtf.csrf import generate_csrf
-from .models import User, Note,AlumniScholarProfiles, Events, Careers
+from .models import User, AlumniScholarProfiles, Events, Careers
 from . import db
 from datetime import datetime
 import json
@@ -9,29 +9,28 @@ import json
 views = Blueprint('views', __name__)
 
 @views.route('/', methods=['GET', 'POST'] )
-def home():
-    # if request.method == 'POST':
-    #     note = request.form.get('note')
-        
-    #     if len(note) < 1:
-    #         flash('Note is too short', category='error')
-    #     else:
-    #         new_note = Note(data=note, user_id=current_user.id)
-    #         db.session.add(new_note)
-    #         db.session.commit()
-    #         flash("Note added!", category='success') 
+def home(): 
     return render_template("home.html", user=current_user)
 
 @views.route('/about')
 def about():
     return render_template("about.html", user=current_user)
 
-
-
 @views.route('/events', methods=['GET', 'POST'])
 def events():
     events = Events.query.order_by(Events.event_date.asc()).all()
     return render_template("events.html", user=current_user, events=events)
+
+
+@views.route('/events/<int:event_id>')
+def event_details(event_id):
+    # Retrieve the event details from the database using the event_id
+    event = Events.query.filter_by(id=event_id).first()
+    if not event:
+        return "<h1> Event Not found</h1? <a href='{{url_for('views.events')}};>Go back</a>"
+    # Render the event details template with the event object
+    return render_template('event_details.html',user=current_user, event=event)
+
 
 @views.route('/create-event', methods=['GET', 'POST'])
 @login_required
@@ -87,8 +86,12 @@ def find_alumni():
     # scholar_profiles = [scholar.profile for scholar in scholars]
     return render_template("find_alumni.html", user=current_user, scholars=scholars)
 
+@views.route('/profile/<int:scholar_id>')
+def profile_detail(scholar_id):
+    scholar = User.query.filter_by(id=scholar_id).first()
+    return render_template('profile_details.html',user=current_user, scholar=scholar)
 
-@views.route('/delete-note', methods=["POST"])
+@views.route('/delete-post', methods=["POST"])
 def delete_note():
     note = json.loads(request.data)
     noteId = note['noteId']

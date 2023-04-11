@@ -6,10 +6,12 @@ from flask_login import LoginManager
 from sqlalchemy import create_engine
 from flask_migrate import Migrate
 from builtins import zip
+import os
 
 
-password='test%401234'
-admin_name = 'milton'
+# load environment variables
+password=os.getenv("PASSWORD")
+admin_name = os.getenv("ADMIN_NAME")
 uri = f'postgresql+psycopg2://{admin_name}:{password}@elp-server.postgres.database.azure.com/postgres?sslmode=require'
 db = SQLAlchemy()
 
@@ -32,8 +34,9 @@ def create_app():
 
     app.register_blueprint(views) # Registering the views blueprint
     app.register_blueprint(auth, url_prefix='/auth')# Registering the auth blueprint with a prefix URL
+    
 
-    from .models import User
+    from .models import User, AlumniScholarProfiles
 
     with app.app_context():
         # Creating all tables in the database using the defined models. Use db.drop_all() to drop all tables

@@ -19,9 +19,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{{ url_for('admin.events') }}">
                 <span data-feather="shopping-cart"></span>
-                events
+                Events
               </a>
             </li>
           </ul>
@@ -49,42 +49,42 @@
         </div>
       </nav>
 
-
-
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-  <div></div>
-
-  <h1>Users</h1>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Email</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for scholar in users %}
-        <tr>
-          <td>{{ scholar.id }}</td>
-          <td>{{ scholar.email }}</td>
-          <td>{{ scholar.firstname }}</td>
-          <td>{{ scholar.lastname }}</td>
-          <td>
-            <a href="{{ url_for('auth.edit_user', user_id=scholar.id) }}" class="btn btn-primary btn-sm">Edit</a>
-            <a href="{{ url_for('auth.delete_user', user_id=scholar.id) }}" class="btn btn-danger btn-sm">Delete</a>
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-
-    
-</main>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <h1>Events</h1>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Event Name</th>
+              <th>Event Venue</th>
+              <th>Event Date</th>
+              <th>Created Date</th>
+              <th>Event Description</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>User ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in events %}
+              <tr>
+                <td>{{ event.id }}</td>
+                <td>{{ event.event_name }}</td>
+                <td>{{ event.event_venue }}</td>
+                <td>{{ event.event_date }}</td>
+                <td>{{ event.created_date }}</td>
+                <td>{{ event.event_description }}</td>
+                <td>{{ event.phone_number }}</td>
+                <td>{{ event.email }}</td>
+                <td>{{ event.user_id }}</td>
+                <td>
+                  <a href="{{ url_for('admin.edit_event', event_id=event.id) }}" class="btn btn-primary btn-sm">Edit</a>
+                  <a href="{{ url_for('admin.delete_event', event_id=event.id) }}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </main>
     </div>
-  </div>
-
-{% endblock %}

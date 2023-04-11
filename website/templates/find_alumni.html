@@ -82,7 +82,7 @@ Equity Alumni Connect|Find Alumni
                 <p>Course/Specialization: {{scholar_profile.course}}</p>
                 <p>Interests:  {{scholar_profile.interests}}</p>
                 <p>Hobbies:  {{scholar_profile.hobbies}}</p>
-                <a href="#" class="text-center" style="text-decoration: none; font-weight: bold; color:#A32A29; font-size: 1.2rem">View Full Profile</a>
+                <a href="{{ url_for('views.profile_detail', scholar_id=scholar.id) }}" class="text-center" style="text-decoration: none; font-weight: bold; color:#A32A29; font-size: 1.2rem">View Full Profile</a>
             </div>
           {%endfor%}
         </div>

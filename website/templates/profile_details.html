@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}
+Find Alumni|Equity Alumni Connect
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <style>
+      .profile-card {
+          background-color: rgba(130, 39, 27, 0.09);
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+          max-width: 900px;
+          min-height: 250px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          margin-bottom: 20px
+      }
+      .profile-card  a {
+          margin-left: auto;
+          margin-right: auto;
+          padding: 30px;
+      }
+      .profile-card img {
+          width:150px;
+          height: 150px;
+          border-radius: 50%;
+          background-color: #fff;
+      }
+  </style>
+    <main role="main" class="col-md-10 px-4 mt-5">
+        <div class="container">
+        <div class="d-flex flex-column profile-card">
+            <div class="col-lg-6 col-md-6 col-sm-4" >
+                <img class="img-fluid" src="{{url_for('static', filename='images/male-avatar2.png')}}" alt="event one image" style="width: 200px; height: 200px; object-fit:cover;">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-8 align-center" style="width:50%;">
+              <h2>{{scholar.firstname}} {{scholar.lastname}}</h2>
+              {% for scholar_profile in scholar.user_profile%}
+                <p>School: {{ scholar_profile.school_university_college }}</p>
+                <p><span>About:</span> {{scholar_profile.about_info}}</p>
+                <p>Course/Specialization: {{scholar_profile.course}}</p>
+                <p>Interests:  {{scholar_profile.interests}}</p>
+                <p>Hobbies:  {{scholar_profile.hobbies}}</p>
+                {%endfor%}
+            </div>
+        </div>
+        <a href="{{url_for('views.find_alumni')}}" class="text-center" style="text-decoration: none; font-weight: bold; color:#A32A29; font-size: 1.2rem">Back to Other profiles</a>       
+        </div> 
+    </div>
+</div>
+  
+{% endblock %}
