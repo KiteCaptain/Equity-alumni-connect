@@ -23,6 +23,7 @@ def events():
 
 
 @views.route('/events/<int:event_id>')
+@login_required
 def event_details(event_id):
     # Retrieve the event details from the database using the event_id
     event = Events.query.filter_by(id=event_id).first()
@@ -60,6 +61,7 @@ def careers():
     return render_template("careers.html", user=current_user, careers=careers)
 
 @views.route('/create-job-listing', methods=['GET', 'POST'])
+@login_required
 def create_job_listing():
     if request.method == 'POST':
         career = Careers(
@@ -87,6 +89,7 @@ def find_alumni():
     return render_template("find_alumni.html", user=current_user, scholars=scholars)
 
 @views.route('/profile/<int:scholar_id>')
+@login_required
 def profile_detail(scholar_id):
     scholar = User.query.filter_by(id=scholar_id).first()
     return render_template('profile_details.html',user=current_user, scholar=scholar)

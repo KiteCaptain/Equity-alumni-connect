@@ -14,3 +14,8 @@ function deletePost(postId) {
       window.location.href = "/";
     });
   }
+
+// Enabling bootstrap tooltip
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

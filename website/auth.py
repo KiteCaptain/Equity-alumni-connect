@@ -138,7 +138,7 @@ def edit_user(user_id):
     return render_template('edit_user.html', user=user)
 
 # Delete a user
-@auth.route('/admin/user/delete/<int:user_id>', methods=['POST'])
+@auth.route('/admin/user/delete/<int:user_id>', methods=['GET','POST'])
 @login_required
 def delete_user(user_id):
     user = User.query.get_or_404(user_id)
@@ -165,7 +165,7 @@ def edit_event(event_id):
     return render_template('update_event.html', event=event)
 
 # Delete event
-@auth.route('admin/event/<int:event_id>/delete', methods=['POST'])
+@auth.route('admin/event/<int:event_id>/delete', methods=['GET','POST'])
 @login_required
 def delete_event(event_id):
     event = Events.query.get_or_404(event_id)
