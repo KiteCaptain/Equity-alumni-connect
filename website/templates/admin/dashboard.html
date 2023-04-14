@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-center">Dashboard</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Users</h5>
+                        <p class="card-text">{{ user_count }} total scholars/alumni</p>
+                        <a href="{{url_for('admin.users')}}">Detail view</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Events</h5>
+                        <p class="card-text">{{ event_count }} total events</p>
+                        <a href="{{url_for('admin.events')}}">Detail view</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Careers</h5>
+                        <p class="card-text">{{ career_count }} total careers</p>
+                        <a href="{{url_for('admin.careers')}}">Detail view</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block title %}
-Login|Equity Alumni Connect
+Admin Login|Equity Alumni Connect
 {% endblock %}
 
 {% block content %}
 <div class="container align-center m-5 signup-form">
     <form class="form" method="POST">
-        <h2>Log In to continue to Equity Alumni Connect</h2>
+        <h2>Log In as admin to view all users details</h2>
         <div class="form-group">
             <label for="email">Email</label>
             <input id="email" class="form-control" name="email" type="email" placeholder="Enter email" required>
@@ -17,7 +17,7 @@ Login|Equity Alumni Connect
             <input id="password" class="form-control" name="password" type="password" placeholder="Enter password" required>
         </div>
         
-        <button type="submit" class="btn btn-primary"> Login </button>
+        <button type="submit"> Login </button>
         <p class="mt-5">Don't have an account? <a href="{{url_for('auth.signup')}}">Sign Up here</a></p>
     </form>
 </div>

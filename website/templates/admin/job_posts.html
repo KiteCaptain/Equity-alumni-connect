@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                <span data-feather="home"></span>
+                Dashboard 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file"></span>
+                Scholars
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin.events') }}">
+                <span data-feather="shopping-cart"></span>
+                Events
+              </a>
+            </li>
+          </ul>
+            
+          
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <h1>Job Posts</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Job Title</th>
+                  <th>Company</th>
+                  <th>Location</th>
+                  <th>Salary</th>
+                  <th>Date Published</th>
+                  <th>Deadline Date</th>
+                  <th>Job Description</th>
+                  <th>Phone Number</th>
+                  <th>Email</th>
+                  <th>User ID</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for career in careers %}
+                  <tr>
+                    <td>{{ career.id }}</td>
+                    <td>{{ career.job_title }}</td>
+                    <td>{{ career.company }}</td>
+                    <td>{{ career.location }}</td>
+                    <td>{{ career.salary }}</td>
+                    <td>
+                        {{ career.date_published.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>
+                        {% if career.deadline_date %}
+                        {{ career.deadline_date.strftime('%Y-%m-%d %H:%M:%S') }}
+                    {% else %}
+                    none
+                    {%endif%}
+                    </td>
+                    <td>{{ career.job_description[:50] }}</td>
+                    <td>{{ career.phone_number }}</td>
+                    <td>{{ career.email }}</td>
+                    <td>{{ career.user_id }}</td>
+                    <td>
+                      <a href="{{ url_for('admin.edit_career', career_id=career.id) }}" class="btn btn-primary btn-sm">Edit</a>
+                      <a href="{{ url_for('admin.delete_career', career_id=career.id) }}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+              
+        </table>
+      </main>
+    </div>
+{% endblock %}

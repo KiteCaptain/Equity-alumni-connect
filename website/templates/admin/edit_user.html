@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Alumni Connect|Signup
+Update user profile
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,7 @@ Alumni Connect|Signup
         opacity: 0.7 !important;
     }
 </style>
-<h2 class="container mt-5 mb-4 text-center sub-title">Sign Up to Equity Alumni/Scholars Connect Platform</h2>
+<h2 class="container mt-5 mb-4 text-center sub-title">Update user profile</h2>
 
 <form class="container profile-form body-text" action="{{url_for('auth.create_profile')}}" method="POST"  >
     <div class="container py-4">        
@@ -224,7 +224,7 @@ Alumni Connect|Signup
             <input name="hobbies" type="text" class="form-control" id="hobbies" placeholder="eg Hiking" >
         </div> 
     </div>
-    <button type="submit" class="btn btn-primary align-center mt-5 ">Submit</button>
+    <button type="submit" class="btn btn-primary align-center mt-5 ">Update User profile</button>
 </form>
 <div class="container mt-3">
     <span>Information provided here is used to provide you with better services and recommendations. see <a href="https://equitygroupholdings.com/ke/images/PRIVACY_NOTICE_KE_1.pdf">privacy policy</a> and <a href="https://equitygroupholdings.com/ke/terms-and-conditions">terms and conditions</a></span>

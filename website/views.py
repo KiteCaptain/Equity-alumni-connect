@@ -91,7 +91,7 @@ def create_job_listing():
             company=request.form.get('company'),
             location=request.form.get('location'),
             salary=request.form.get('salary'),
-            deadline_date=request.form.get('dealine_date'),
+            deadline_date=request.form.get('deadline_date'),
             job_description=request.form.get('job_description'),
             phone_number=request.form.get('phone_number'),
             email=request.form.get('email')
