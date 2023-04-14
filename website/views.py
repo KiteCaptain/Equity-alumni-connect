@@ -18,8 +18,26 @@ def about():
 
 @views.route('/events', methods=['GET', 'POST'])
 def events():
-    events = Events.query.order_by(Events.event_date.asc()).all()
-    return render_template("events.html", user=current_user, events=events)
+    search_query = request.form.get('search')
+    if search_query:
+        events = Events.query.filter(Events.event_name.ilike(f'%{search_query}%')).order_by(Events.event_date.asc()).all()
+    else:
+        events = Events.query.order_by(Events.event_date.asc()).all()
+    return render_template("events.html", user=current_user, events=events, search_query=search_query)
+
+
+@views.route('/upcoming events', methods=['GET', 'POST'])
+def upcoming_events():
+    if request.method == 'POST':
+        search_query = request.form['search_query']
+        events = Events.query.filter(Events.event_name.contains(search_query)).order_by(Events.event_date.asc()).all()
+    else:
+        events = Events.query.order_by(Events.event_date.asc()).all()
+    
+    today = datetime.today().date()
+    upcoming_events = [event for event in events if event.event_date.date() >= today]
+    
+    return render_template("events.html", user=current_user, events=upcoming_events, )
 
 
 @views.route('/events/<int:event_id>')
@@ -54,11 +72,14 @@ def create_event():
     return render_template("create_event.html", user=current_user, csrf_token=csrf_token)
 
 
-@views.route('/careers')
+@views.route('/careers', methods=['GET', 'POST'] )
 def careers():
-    careers = Careers.query.order_by(Careers.date_published.asc()).all()
-    
-    return render_template("careers.html", user=current_user, careers=careers)
+    search_query = request.form.get('search')
+    if search_query:
+        careers = Careers.query.filter(Careers.job_title.ilike(f'%{search_query}%')).order_by(Careers.date_published.asc()).all()
+    else:
+        careers = Careers.query.order_by(Careers.date_published.asc()).all()
+    return render_template("careers.html", user=current_user, careers=careers, search_query=search_query)
 
 @views.route('/create-job-listing', methods=['GET', 'POST'])
 @login_required
@@ -84,9 +105,16 @@ def create_job_listing():
 
 @views.route('/find-alumni', methods=['GET', 'POST'])
 def find_alumni():
-    scholars = User.query.order_by(User.firstname.asc()).all()
-    # scholar_profiles = [scholar.profile for scholar in scholars]
+    search_query = request.form.get('search')
+    if search_query:
+        scholars = User.query.filter(
+            (User.firstname.ilike(f'%{search_query}%')) | 
+            (User.lastname.ilike(f'%{search_query}%'))
+        ).order_by(User.firstname.asc()).all() 
+    else:
+        scholars = User.query.order_by(User.firstname.asc()).all()
     return render_template("find_alumni.html", user=current_user, scholars=scholars)
+
 
 @views.route('/profile/<int:scholar_id>')
 @login_required

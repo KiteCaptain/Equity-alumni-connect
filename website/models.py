@@ -54,7 +54,4 @@ class Careers(db.Model):
     job_description=db.Column(db.String(2000))
     phone_number=db.Column(db.String(20))
     email=db.Column(db.String(150))
-    user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
-    
-
-    
+    user_id=db.Column(db.Integer, db.ForeignKey('user.id')) 

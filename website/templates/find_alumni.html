@@ -1,49 +1,52 @@
 {% extends "base.html" %}
 {% block title %}
-Equity Alumni Connect|Find Alumni
+Find Alumni|Equity Alumni Connect
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-    <div class="col-md-2 d-none d-md-block bg-light sidebar-wrapper">
-        <div class="position-sticky sticky-top">
-        <nav class="bg-light sidebar">
-            <!-- Events sidebar -->
-            <div class="sidebar-sticky">
-            <form class="sidebar-search" action="" method="POST">
-                <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search...">
-                <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></span></button>
+        <div class="col-md-2 d-md-block bg-light sidebar-wrapper">
+            <div class="position-sticky sticky-top">
+            <nav class="bg-light sidebar">
+                <!-- Events sidebar -->
+                <div class="sidebar-sticky">
+                    <form class="sidebar-search" action="" method="POST">
+                        <div class="input-group col-12">
+                            <input name='search' id='search' type="text" class="form-control" placeholder="Search by first or last name">
+                            <button class="btn btn-primary" type="submit">
+                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                            </button>
+                        </div>
+                    </form>
+                    <!--
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>Filter By</span>
+                    <a class="d-flex align-items-center text-muted" href="#">
+                    </a>
+                </h6>
+                 <ul class="nav flex-column">
+                    <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        Institution
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Course/Specialization
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Location
+                    </a>
+                    </li>
+                </ul> -->
                 </div>
-            </form>
-
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Filter By</span>
-                <a class="d-flex align-items-center text-muted" href="#">
-                </a>
-            </h6>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                <a class="nav-link active" href="#">
-                    Institution
-                </a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">
-                    Course/Specialization
-                </a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">
-                    Location
-                </a>
-                </li>
-            </ul>
+            </nav>
             </div>
-        </nav>
         </div>
-    </div>
+    
     <style>
       .profile-card {
           background-color: rgba(130, 39, 27, 0.09);
