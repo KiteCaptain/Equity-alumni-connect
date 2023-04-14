@@ -11,9 +11,11 @@ from dotenv import load_dotenv
 
 # load environment variables
 load_dotenv()
-password=os.getenv("PASSWORD")
-admin_name = os.getenv("ADMIN_NAME")
-uri = f'postgresql+psycopg2://{admin_name}:{password}@elp-server.postgres.database.azure.com/postgres?sslmode=require'
+# NOTE: in production the password and admin name are stored in the .env file I have provided the credentials here in the url so that the appp runs on any test computer
+# password=os.getenv("PASSWORD")
+# admin_name = os.getenv("ADMIN_NAME")
+# uri = f'postgresql+psycopg2://{admin_name}:{password}@elp-server.postgres.database.azure.com/postgres?sslmode=require'
+uri = f'postgresql+psycopg2://milton:test%401234@elp-server.postgres.database.azure.com/postgres?sslmode=require'
 # secret_key = os.getenv("SECRET_KEY")
 db = SQLAlchemy()
 
